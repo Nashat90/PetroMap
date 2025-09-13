@@ -134,5 +134,6 @@ fig = opp_map_custom.plot_oppurtunity_map(
 )
 fig.update_layout(height=800, width=800)
 ```
+![png](images/oppur.png)
 
 

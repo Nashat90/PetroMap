@@ -2,7 +2,7 @@ ContourMap Library Examples
 This notebook demonstrates the usage of the ContourMap class from the essentials.py library.
 
 The ContourMap class is designed to generate contour plots from scattered 2D data (X, Y, and Z values) using different interpolation methods.
-
+![png](https://raw.github.com/Nashat90/PetroMap/main/ContourMapUsage_files/All.png)
 ## 1. Setup
 First, let's import the necessary libraries and the ContourMap class itself. We'll also generate some sample data to work with.
 
@@ -37,7 +37,7 @@ plt.show()
 
 
     
-![png](ContourMapUsage_files/ContourMapUsage_3_0.png)
+![png](https://raw.githubusercontent.com/Nashat90/PetroMap/main/ContourMapUsage_files/ContourMapUsage_3_0.png)
     
 
 
@@ -57,7 +57,7 @@ plt.show()
 
 
     
-![png](ContourMapUsage_files/ContourMapUsage_5_0.png)
+![png](https://raw.githubusercontent.com/Nashat90/PetroMap/main/ContourMapUsage_files/ContourMapUsage_5_0.png)
     
 
 
@@ -77,7 +77,7 @@ plt.show()
 
 
     
-![png](ContourMapUsage_files/ContourMapUsage_7_0.png)
+![png](https://raw.github.com/Nashat90/PetroMap/main/ContourMapUsage_files/ContourMapUsage_7_0.png)
     
 
 
@@ -96,44 +96,15 @@ fig.update_layout(height=1000, template="plotly_dark")
 
 
 
-## OpportunityContour Library Examples
-This notebook provides examples of how to use the OppurtunityContour class from the opportunity.py library.
-
-The OppurtunityContour class is designed for creating "opportunity maps" by combining and normalizing multiple variables into a single composite score. This is especially useful for applications like geoscience, where you might want to identify areas of interest based on a combination of different subsurface properties.
-
-### 1. Setup
-We'll start by importing the necessary libraries and the OppurtunityContour class. We'll also create a sample pandas DataFrame that mimics geological data, including variables like PAY (pay thickness), POROSITY, and SW (water saturation).
-
-
+## 6. Using the Kriging Interploation
+You can use Kriging interpolation to distribute geospatial properties using PyKrige Library
 ```python
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
+# Create a ContourMap instance for Kriging Simulation
+contour_cubic_mpl = ContourMap(X, Y, Z, well_names=well_names, backend="plotly")
 
-# You'll need to have your essentials.py file in the same directory
-from PetroMap.oppurtunity import OppurtunityContour
-import pandas as pd
-data = pd.read_excel("cleaned xy data.xlsx")
-data = data[ data.XCOORD > 460000 ]
-X = data.XCOORD
-Y = data.YCOORD
-Z = data.PAY
-well_names = data.ALIAS.to_list()
-# Define custom variables and weights
-custom_variables = ["SW",'PAY', 'POROSITY']
-custom_weights = [0.2, 0.3, 0.5] # PAY is considered more important
+# Plot the map and display it
+fig = contour_cubic_mpl.plot_krigemap(title="Kriging Map")
+fig.update_layout(height=800)
 
-# Create a new OppurtunityContour instance (optional, you can reuse the old one)
-opp_map_custom = OppurtunityContour(data, well_names=well_names,backend="plotly")
-
-# Plot the map with custom variables and weights
-fig = opp_map_custom.plot_oppurtunity_map(
-    variables=custom_variables,
-    weights=custom_weights,
-    title="Opportunity Map with Custom Weights"
-)
-fig.update_layout(height=800, width=800)
 ```
-![png](images/oppur.png)
-
-
+![png](https://raw.github.com/Nashat90/PetroMap/main/ContourMapUsage_files/Krige.png)

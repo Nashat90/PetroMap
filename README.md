@@ -2,7 +2,7 @@ ContourMap Library Examples
 This notebook demonstrates the usage of the ContourMap class from the essentials.py library.
 
 The ContourMap class is designed to generate contour plots from scattered 2D data (X, Y, and Z values) using different interpolation methods.
-![png](https://raw.github.com/Nashat90/PetroMap/main/ContourMapUsage_files/All.png)
+![png](https://raw.github.com/Nashat90/PetroMap/main/images/All.png)
 ## 1. Setup
 First, let's import the necessary libraries and the ContourMap class itself. We'll also generate some sample data to work with.
 
@@ -108,3 +108,4 @@ fig.update_layout(height=800)
 
 ```
 ![png](https://raw.github.com/Nashat90/PetroMap/main/ContourMapUsage_files/Krige.png)
+
